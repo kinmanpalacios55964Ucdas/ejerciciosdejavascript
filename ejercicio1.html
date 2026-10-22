@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1 - Validador de Parámetros HTTP</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+        }
+        h1 {
+            color: #1e293b;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .btn-azul {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+            width: 100%;
+        }
+        .btn-azul:hover {
+            background-color: #1d4ed8;
+        }
+        .btn-azul:active {
+            transform: scale(0.98);
+        }
+        .resultado-box {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            color: #0f172a;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Ejercicio 1: Parámetros HTTP</h1>
+        <p>Presiona el botón para ejecutar la función de paginación con los parámetros de prueba del enunciado.</p>
+        
+        <!-- Botón azul solicitado -->
+        <button class="btn-azul" id="btnEjecutar">Ejecutar Validación</button>
+        
+        <!-- Caja donde se pintará el resultado en la pantalla -->
+        <div class="resultado-box" id="resultadoVisual"></div>
+    </div>
+
+    <script src="ejercicio1.js"></script>
+    <script>
+        // Lógica interactiva para capturar el clic y mostrarlo en la interfaz
+        document.getElementById('btnEjecutar').addEventListener('click', () => {
+            // Ejecutamos tu función del archivo ejercicio1.js
+            const respuesta = configurarPaginacion("", 0, "true");
+            
+            // Mostramos el resultado estéticamente en la página
+            const caja = document.getElementById('resultadoVisual');
+            caja.innerText = respuesta;
+            caja.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
