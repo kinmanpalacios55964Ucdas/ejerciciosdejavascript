@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6 - Gestión de Estado Inmutable</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+        }
+        h1 {
+            color: #1e293b;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .btn-azul {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+            width: 100%;
+        }
+        .btn-azul:hover {
+            background-color: #1d4ed8;
+        }
+        .btn-azul:active {
+            transform: scale(0.98);
+        }
+        .resultado-box {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 13px;
+            color: #0f172a;
+            white-space: pre-wrap;
+            text-align: left;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Ejercicio 6: Inmutabilidad en Memoria</h1>
+        <p>Aplica un descuento del 10% y verifica si el inventario inicial se alteró o permaneció inmutable en memoria.</p>
+        
+        <button class="btn-azul" id="btnEjecutar">Aplicar Descuento Seguro</button>
+        
+        <div class="resultado-box" id="resultadoVisual"></div>
+    </div>
+
+    <script src="ejercicio6.js"></script>
+    <script>
+        document.getElementById('btnEjecutar').addEventListener('click', () => {
+            const nuevoInventario = aplicarDescuentoTemporada(inventario, 10);
+            
+            // Evaluaciones de inmutabilidad solicitadas por el reto
+            const testPrecioOriginal = inventario[0].precio === 100;
+            const testIdentidadReferencia = inventario[0] == nuevoInventario[0];
+
+            const caja = document.getElementById('resultadoVisual');
+            caja.textContent = `¿Precio original del Teclado intacto (=== 100)? -> ${testPrecioOriginal} (Éxito)\n¿Comparten la misma referencia física (==)? -> ${testIdentidadReferencia} (Copia segura)\n\nNuevo Carrito de Compras:\n${JSON.stringify(nuevoInventario, null, 2)}`;
+            caja.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

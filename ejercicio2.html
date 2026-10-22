@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2 - Generador de Grillas ASCII</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+        }
+        h1 {
+            color: #1e293b;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .btn-azul {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+            width: 100%;
+        }
+        .btn-azul:hover {
+            background-color: #1d4ed8;
+        }
+        .btn-azul:active {
+            transform: scale(0.98);
+        }
+        .resultado-box {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+            line-height: 1.2;
+            color: #38bdf8;
+            white-space: pre;
+            text-align: left;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Ejercicio 2: Grillas ASCII</h1>
+        <p>Presiona el botón para renderizar la maqueta visual del navegador (Dimensiones: 6 x 5) en la pantalla.</p>
+        
+        <button class="btn-azul" id="btnEjecutar">Generar Ventana ASCII</button>
+        
+        <div class="resultado-box" id="resultadoVisual"></div>
+    </div>
+
+    <script src="ejercicio2.js"></script>
+    <script>
+        // Modificamos ligeramente la lógica de tu JS para capturar la salida en vez de solo console.log
+        document.getElementById('btnEjecutar').addEventListener('click', () => {
+            const originalLog = console.log;
+            let salidaGrilla = "";
+            
+            // Interceptamos temporalmente el console.log del script externo
+            console.log = (texto) => { salidaGrilla = texto; };
+            generarGrillaASCII(6, 5);
+            console.log = originalLog; // Devolvemos el console.log a la normalidad
+            
+            const caja = document.getElementById('resultadoVisual');
+            caja.textContent = salidaGrilla;
+            caja.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
